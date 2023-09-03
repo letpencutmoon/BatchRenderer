@@ -18,7 +18,7 @@ private:
 public:
 	/// @brief 生成单个缓冲区，绑定缓冲区设置数据
 	/// @param data 
-	/// @param count 
+	/// @param count
 	IndexBuffer(const unsigned int* data,unsigned int count);
 	/// @brief 删除缓冲区
 	~IndexBuffer();
@@ -26,8 +26,12 @@ public:
 	/// @brief 绑定和解绑该缓冲区
 	void Bind() const;
 	void Unbind() const;
-	/// @brief 获取数量
+	/// @brief 获取数据数量
 	/// @return m_Count
 	inline unsigned int GetCount() const{ return m_Count;}
 
+	/// @brief 向内存中添加顶点下标数据 
+	/// @param data 顶点下标数据
+	/// @param count 数据数量
+	void Add(const unsigned int* data,unsigned int count);
 };

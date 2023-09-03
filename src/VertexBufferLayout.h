@@ -63,4 +63,4 @@ public:
     /// @brief 获取该顶点缓存单个顶点的字节数
     /// @return 字节数
     inline unsigned int GetStride() const {return m_Stride;}
-}; 
+};

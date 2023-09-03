@@ -5,10 +5,10 @@ author:south
 #include "TestTexture2D.h"
 #include "../Renderer.h"
 #include "imgui/imgui.h"
-#include "../VertexBufferLayout.h"
-#include "../vender/glm/glm.hpp"
-#include "../vender/glm/gtc/matrix_transform.hpp"
-#include "../vender/stb_image/stb_image.h"
+#include "VertexBufferLayout.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "stb_image/stb_image.h"
 namespace test
 {
 test::TestTexture2D::TestTexture2D()
@@ -87,6 +87,7 @@ void test::TestTexture2D::OnRender()
         m_Shader->SetUniformMat4f("u_MVP", mvp);
         renderer.Draw(*m_VAO, *m_IBO, *m_Shader);
     }
+    
     {
         glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationB);
         glm::mat4 mvp = m_proj * m_view * model;

@@ -7,10 +7,10 @@ author:south
 
 #include <memory>
 #include "Test.h"
-#include "../VertexArray.h"
-#include "../VertexBuffer.h"
-#include "../Texture.h"
-#include "../Shader.h"
+#include "VertexArray.h"
+#include "VertexBuffer.h"
+#include "Texture.h"
+#include "Shader.h"
 
 
 namespace test

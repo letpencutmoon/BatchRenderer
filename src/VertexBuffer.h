@@ -11,6 +11,7 @@ class VertexBuffer
 private:
 	/// @brief 缓冲区ID
 	unsigned int m_RendererID;
+	unsigned int m_Size;
 public:
 	/// @brief 创建一个缓冲区并设置数据
 	/// @param data 数据
@@ -23,4 +24,8 @@ public:
 	void Bind() const;
 	/// @brief 解绑该缓冲区
 	void Unbind() const;
+	/// @brief 向缓存区添加数据
+	/// @param data 数据
+	/// @param size 数据的大小(字节)
+	void Add(const void* data,unsigned int size);
 };

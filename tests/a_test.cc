@@ -16,7 +16,6 @@ author:south
 #include "TestClearColor.h"
 #include "TestTexture2D.h"
 
-
 int main(void)
 {
     GLFWwindow* window;

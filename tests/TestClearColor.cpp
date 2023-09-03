@@ -3,8 +3,8 @@ filename:TestClearColor.cpp
 author:south
 */
 #include "TestClearColor.h"
-#include "../Renderer.h"
-#include "../vender/imgui/imgui.h"
+#include "Renderer.h"
+#include "imgui/imgui.h"
 namespace test
 {
 test::TestClearColor::TestClearColor()
