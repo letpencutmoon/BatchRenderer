@@ -22,7 +22,7 @@ namespace test
         virtual void OnImGuiRender() {}
     };
 
-    class TestMenu :public Test
+    class TestMenu : public Test
     {
     private:
         Test*& m_CurrentTest;

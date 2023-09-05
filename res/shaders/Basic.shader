@@ -1,9 +1,3 @@
-/*
-filename:Basic.shader
-author:south
-*/
-
-//顶点着色器，用于确定顶点位置
 #shader vertex
 #version 330 core
 layout(location = 0) in vec4 position;
@@ -24,5 +18,3 @@ void main()
 {
 	color = u_Color;
 };
-
- 

@@ -11,7 +11,7 @@ function(add_executable_test_by_filename filename)
 endfunction()
 
 file(GLOB TEST_FILES
-        "${PROJECT_SOURCE_DIR}/tests/*_test.cc"
+        "${PROJECT_SOURCE_DIR}/tests/*_test.cpp"
         )
 
 file(GLOB_RECURSE TESTS_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)

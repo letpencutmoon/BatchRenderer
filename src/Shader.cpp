@@ -10,7 +10,6 @@ update:23.08.24
 #include <fstream>
 #include <string>
 #include <sstream>
-
 #include "Renderer.h"
 
 
@@ -35,6 +34,7 @@ void Shader::UnBind() const
 {
     GLCall(glUseProgram(0));
 }
+
 int Shader::GetUniformLocation(const std::string& name)
 {
     if (m_UniformLocationCahe.count(name)) return m_UniformLocationCahe[name];
@@ -83,17 +83,19 @@ ShaderProgramSource Shader::ParseShader()
     //逐行读取
     while (getline(stream,line))
     {
-	//根据文件判断是那种着色器
-	if (line.find("#shader") != std::string::npos) {
-	    if (line.find("vertex") != std::string::npos)
-		type = ShaderType::VERTEX;
-	    else if (line.find("fragment") != std::string::npos)
-		type = ShaderType::FRAGMENT;
-       }
-	//根据着色器存储文件流
-	else {
-	    ss[(int)type] << line << '\n';
-	}
+        //根据文件判断是那种着色器
+        if (line.find("#shader") != std::string::npos) 
+        {
+            if (line.find("vertex") != std::string::npos)
+                type = ShaderType::VERTEX;
+            else if (line.find("fragment") != std::string::npos)
+                type = ShaderType::FRAGMENT;
+        }
+        //根据着色器存储文件流
+        else 
+        {
+            ss[(int)type] << line << '\n';
+        }
     }
     return { ss[0].str(),ss[1].str() };
 }

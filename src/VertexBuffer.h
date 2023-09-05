@@ -12,6 +12,7 @@ private:
 	/// @brief 缓冲区ID
 	unsigned int m_RendererID;
 	unsigned int m_Size;
+
 public:
 	/// @brief 创建一个缓冲区并设置数据
 	/// @param data 数据
