@@ -24,8 +24,11 @@ public:
 	void Bind() const;
 	/// @brief 解绑该缓冲区
 	void Unbind() const;
-	/// @brief 向缓存区添加数据
-	/// @param data 数据
-	/// @param size 数据的大小(字节)
-	void Add(const void* data,unsigned int size);
+
+	void Expand(unsigned int size);
+
+	void SubData(const VertexBuffer& vb);
+	void SubData(const void* data,unsigned int size);
+
+	inline unsigned int GetSize() const {return m_Size;};
 };

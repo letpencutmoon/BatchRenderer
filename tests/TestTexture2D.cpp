@@ -13,7 +13,7 @@ namespace test
 {
 test::TestTexture2D::TestTexture2D()
     :m_TranslationA(200,100,0),m_TranslationB(100,50,0)
-   {
+    {
     float points[] =
     {
     -200.0f,-100.0f,0.0f,0.0f, //0

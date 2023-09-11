@@ -34,7 +34,7 @@ struct VertexBufferElement
         default:
             break;
         }
-        ASSETS(false);
+        // ASSETS(false);
         return 0;
     }
 };
