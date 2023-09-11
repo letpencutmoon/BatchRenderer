@@ -16,15 +16,24 @@ namespace test
     {
         float points[] =
         {
-        -200.0f,-100.0f,0.0f,0.0f, //0
-        200.0f,-100.0f, 1.0f,0.0f,//1
-        200.0f,100.0f, 1.0f,1.0f,//2
-        -200.0f,100.0f , 0.0f,1.0f//3
+            -200.0f,-200.0f, 0.0f,0.0f,0.0f,//0
+            200.0f,-200.0f, 1.0f,0.0f, 0.0f,//1
+            200.0f,200.0f,  1.0f,1.0f, 0.0f,//2
+            -200.0f,200.0f, 0.0f,1.0f, 0.0f,//3
+
+            -100.0f,-100.0f, 0.0f,0.0f, 1.0f,//4
+            300.0f,-100.0f, 1.0f,0.0f, 1.0f, //5
+            300.0f,300.0f, 1.0f,1.0f, 1.0f, //6
+            -100.0f,300.0f, 0.0f,1.0f, 1.0f//7
+
         };
         unsigned int indices[] =
         {
             0,1,2,
-            2,3,0
+            0,2,3,
+
+            4,5,6,
+            6,7,4
         };
 
         //启用混合,定义如何混合像素
@@ -38,9 +47,10 @@ namespace test
         VertexBufferLayout layout;
         layout.Push<float>(2);
         layout.Push<float>(2);
+        layout.Push<float>(1);
         m_VAO->AddBuffer(*m_VBO, layout);
 
-        m_IBO = std::make_unique<IndexBuffer>(indices, 6);
+        m_IBO = std::make_unique<IndexBuffer>(indices, 12);
 
         //生成正交矩阵,定义视图空间的大小，超过这个大小的物体不会显示
         m_proj = glm::ortho(-480.0f, 480.0f, -360.0f, 360.0f, -1.0f, 1.0f);
@@ -51,8 +61,10 @@ namespace test
         m_Shader->SetUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
 
         //设置纹理,插槽
-        m_Texture = std::make_unique<Texture>("/home/south/graphics/opengl/batchrenderer/res/texture/eriko.png");
-        m_Shader->SetUniform1i("u_Texture", 0);
+        m_Texture1 = std::make_unique<Texture>("/home/south/graphics/opengl/batchrenderer/res/texture/eriko.png");
+        m_Texture2 = std::make_unique<Texture>("/home/south/graphics/opengl/batchrenderer/res/texture/erikosix.jpg");
+        int samplers[2] = {0,1};
+        m_Shader->SetUniform1iv("u_Textures", 2,samplers);
 
         //解绑程序和缓冲区
         m_VAO->UnBind();
@@ -71,36 +83,27 @@ namespace test
 
     void test::TestTexture2D::OnRender()
     {
-        GLCall(glClearColor(0.0f,0.0f,0.0f,1.0f));
+        GLCall(glClearColor(0.2, 0.3, 0.8,1.0f));
         GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
         Renderer renderer;
 
         m_VAO->Bind();
         m_IBO->Bind();
-        m_Texture->Bind();
 
-        {
-            glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationA);
-            glm::mat4 mvp = m_proj * m_view * model;
-            m_Shader->Bind();
-            m_Shader->SetUniformMat4f("u_MVP", mvp);
-            renderer.Draw(*m_VAO, *m_IBO, *m_Shader);
-        }
-        
-        {
-            glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationB);
-            glm::mat4 mvp = m_proj * m_view * model;
-            m_Shader->Bind();
-            m_Shader->SetUniformMat4f("u_MVP", mvp);
-            renderer.Draw(*m_VAO, *m_IBO, *m_Shader);
-        }
+        m_Texture1->Bind();
+        m_Texture2->Bind(1);
+
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationA);
+        glm::mat4 mvp = m_proj * m_view * model;
+        m_Shader->Bind();
+        m_Shader->SetUniformMat4f("u_MVP", mvp);
+        renderer.Draw(*m_VAO, *m_IBO, *m_Shader);
     }
 
     void test::TestTexture2D::OnImGuiRender()
     {
         ImGui::SliderFloat3("Translation A", &m_TranslationA.x, -480.0f, 480.0f);
-        ImGui::SliderFloat3("Translation B", &m_TranslationB.x, -480.0f, 480.0f);
         ImGuiIO& io = ImGui::GetIO(); (void)io;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
