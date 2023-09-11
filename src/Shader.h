@@ -37,6 +37,7 @@ public:
     void SetUniform1f(const std::string& name, int value);
     void SetUniform4f(const std::string& name,float v0,float v1,float f0,float f1);
     void SetUniformMat4f(const std::string& name,const glm::mat4& matrix);
+    void SetUniform1iv(const std::string& name,int count,const int* value);
 
     /// @brief 根据源码创建着色器程序并返回该程序id
     /// @param vertexShader 顶点着色器源码

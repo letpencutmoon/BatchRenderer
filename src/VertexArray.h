@@ -8,7 +8,6 @@ update:23.08.24
 
 #include<memory>
 #include "VertexBuffer.h"
-#include "VertexBufferLayout.h"
 
 class VertexBufferLayout;
 
@@ -22,12 +21,12 @@ private:
     /// @brief 内存中有多少个顶点
     unsigned int m_Count;
     /// @brief 
-    VertexBufferLayout m_Layout;
+    std::unique_ptr<VertexBufferLayout> m_Layout;
     std::unique_ptr<VertexBuffer> m_Buffer;
 public:
     /// @brief 创建并绑定一个顶点数组
     VertexArray();
-    VertexArray(VertexBufferLayout layout);
+    VertexArray(VertexBufferLayout& layout);
     /// @brief 删除当前顶点数组
     ~VertexArray();
     /// @brief 绑定当前顶点数组

@@ -6,6 +6,12 @@ update:23.08.24
 
 #include "VertexBufferLayout.h"
 
+VertexBufferLayout::VertexBufferLayout(const VertexBufferLayout &other)
+{
+    this->m_Elements = other.m_Elements;
+    this->m_Stride = other.m_Stride;
+}
+
 template<>
 void VertexBufferLayout::Push<float>(unsigned int count)
 {

@@ -12,11 +12,12 @@ private:
 	/// @brief 缓冲区ID
 	unsigned int m_RendererID;
 	unsigned int m_Size;
+	unsigned int m_Capacity;
 public:
 	/// @brief 创建一个缓冲区并设置数据
 	/// @param data 数据
-	/// @param size 数据的字节数
-	VertexBuffer(const void* data,unsigned int size);
+	/// @param capacity 数据的字节数
+	VertexBuffer(const void* data, unsigned int capacity);
 	/// @brief 删除该缓冲区
 	~VertexBuffer();
 	

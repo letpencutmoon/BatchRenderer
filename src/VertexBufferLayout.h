@@ -8,7 +8,6 @@ update:23.08.24
 
 #include <vector>
 #include <GL/glew.h>
-
 #include "Renderer.h"
 
 /// @brief 缓冲元素结构
@@ -34,7 +33,7 @@ struct VertexBufferElement
         default:
             break;
         }
-        // ASSETS(false);
+        ASSETS(false);
         return 0;
     }
 };
@@ -52,6 +51,9 @@ public:
     VertexBufferLayout()
     :m_Stride(0)
     {};
+
+    VertexBufferLayout(const VertexBufferLayout& other);
+    
     /// @brief 向元素数组中添加元素，并计算有多少字节
     /// @tparam T 该元素的数据类型
     /// @param count 该元素的数据数量
